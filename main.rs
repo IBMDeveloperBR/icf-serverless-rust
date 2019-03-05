@@ -25,7 +25,6 @@ fn get_iam_token(apikey: &String) -> Result<String, reqwest::Error> {
 
 fn main() {
     let args: Vec<String> = env::args().collect();
-    //let apikey = String::from("3y9QjSOQxHRfpkxTtEIBAYW1B3M-FB4fh62gxu_aPy4T");
     let apikey = &args[1];
 
     println!("{}", get_iam_token(&apikey).unwrap());
