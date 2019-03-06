@@ -1,0 +1,10 @@
+[package]
+name = "rusty_microservice"
+version = "0.1.0"
+authors = ["Vanderlei Pereira <munhoz@protonmail.ch>"]
+edition = "2018"
+
+[dependencies]
+reqwest = "0.9.10"
+rustc-serialize = "*"
+openssl-probe = "*"
