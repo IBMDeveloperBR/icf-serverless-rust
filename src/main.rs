@@ -34,7 +34,6 @@ fn main() {
     openssl_probe::init_ssl_cert_env_vars();
 
     let args: Vec<String> = env::args().collect();
-    //let apikey = String::from("3y9QjSOQxHRfpkxTtEIBAYW1B3M-FB4fh62gxu_aPy4T");
     //println!("Size of Vec<String>: {}", args.len());
 
     if args.len() == 1 {
