@@ -1,7 +1,7 @@
 use std::env;
 use serde::{Deserialize, Serialize};
 
-#[derive(Deserialize, Debug)]
+#[derive(Deserialize, Serialize, Debug)]
 struct Payload {
     name: String,
 }
@@ -17,5 +17,5 @@ fn main() {
     p.name = format!("Hello {}, this is Rust @ ICF!", p.name);
 
     /* Log output to stdout */
-    println!("{:#?}", p);
+    println!("{}", serde_json::to_string(&p).unwrap());
 }
