@@ -1,4 +1,4 @@
-# Dockerfile for example whisk docker action
+# Dockerfile for example OpenWhisk docker action
 
 FROM ekidd/rust-musl-builder AS builder
 
@@ -7,8 +7,6 @@ ADD . ./
 RUN sudo chown -R rust:rust /home/rust
 
 RUN cargo build --release
-
-# Now, we need to build our _real_ Docker container
 
 FROM openwhisk/dockerskeleton
 
