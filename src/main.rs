@@ -1,47 +1,21 @@
-extern crate reqwest;
-extern crate rustc_serialize;
-extern crate openssl_probe;
-
 use std::env;
-use rustc_serialize::json;
-use rustc_serialize::json::Json;
-use reqwest::header::HeaderMap;
-use reqwest::header::CONTENT_TYPE;
-use reqwest::header::ACCEPT;
-use reqwest::Client;
+use serde::{Deserialize, Serialize};
 
-fn get_iam_token(apikey: &String) -> Result<String, reqwest::Error> {
-    let mut headers = HeaderMap::new();
-    headers.insert(CONTENT_TYPE, "application/x-www-form-urlencoded".parse().unwrap());
-    headers.insert(ACCEPT, "application/json".parse().unwrap());
-
-    let mut msg_body = String::from("grant_type=urn:ibm:params:oauth:grant-type:apikey&apikey=");
-    msg_body.push_str(apikey);
-    //println!("{}", msg_body);
-
-    let res = Client::new()
-        .post("https://iam.cloud.ibm.com/identity/token")
-        .headers(headers)
-        .body(msg_body)
-        .send()?
-        .text()?;
-    //println!("{}", res);
-
-    Ok(res)
+#[derive(Deserialize, Debug)]
+struct Payload {
+    name: String,
 }
 
 fn main() {
-    openssl_probe::init_ssl_cert_env_vars();
-
+    /* Read input arguments as a vector of Strings */
     let args: Vec<String> = env::args().collect();
-    //println!("Size of Vec<String>: {}", args.len());
 
-    if args.len() == 1 {
-        println!("Empty argument.");
-    } else {
-        println!("{}", &args[1]);
-    }
-    //let apikey = &args[1];
-    //println("{}", apikey);
-    //println!("{}", get_iam_token(&apikey).unwrap());
+    /* Use serde_json to deserialize a &str into a Payload struct object */
+    let mut p: Payload = serde_json::from_str(&args[1]).unwrap();
+
+    /* Work with input data*/
+    p.name = format!("Hello {}, this is Rust @ ICF!", p.name);
+
+    /* Log output to stdout */
+    println!("{:#?}", p);
 }
