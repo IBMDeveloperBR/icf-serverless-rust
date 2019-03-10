@@ -1,1 +1,1 @@
-# Serverless Rust with OpenWhisk
+# Serverless Rust with ICF/OpenWhisk
