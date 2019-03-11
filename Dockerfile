@@ -1,5 +1,3 @@
-# Dockerfile for example OpenWhisk docker action
-
 FROM ekidd/rust-musl-builder AS builder
 
 ADD . ./
