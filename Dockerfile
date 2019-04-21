@@ -14,7 +14,7 @@ RUN apk --no-cache add ca-certificates
 
 ### Copy source file(s)
 COPY --from=builder \
-	/home/rust/src/target/x86_64-unknown-linux-musl/release/rusty_microservice \
+	/home/rust/src/target/x86_64-unknown-linux-musl/release/serverless-rust-icf-skeleton \
 	/action/exec
 
 CMD ["/bin/bash", "-c", "cd actionProxy && python -u actionproxy.py"]
